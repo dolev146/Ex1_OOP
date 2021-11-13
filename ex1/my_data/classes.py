@@ -1,13 +1,13 @@
 import csv
 import json
+import sys
 
 """
 
 this class represent building with elevators
 
 """
-
-
+'''
 class Elevators:
     def __init__(self, id, speed, minFloor, maxFloor, closeTime, openTime, startTime, stopTime):
         self._id = id
@@ -18,6 +18,7 @@ class Elevators:
         self._openTime = openTime
         self._startTime = startTime
         self._stopTime = stopTime
+'''
 
 
 class Building:
@@ -26,19 +27,27 @@ class Building:
         with open(j_file, "r") as file:
             data = json.load(file)
             self.minFloor = data["_minFloor"]
-            self._maxFloor = data["_maxFloor"]
+            self.maxFloor = data["_maxFloor"]
             for _elevators in data['_elevators']:
-                self._id = _elevators['_id']
-                self._speed = _elevators['_speed']
+                self.id = _elevators['_id']
+                self.speed = _elevators['_speed']
                 self.minFloor = _elevators['_minFloor']
-                self._maxFloor = _elevators['_maxFloor']
-                self._closeTime = _elevators['_closeTime']
-                self._openTime = _elevators['_openTime']
-                self._startTime = _elevators['_startTime']
-                self._stopTime = _elevators['_stopTime']
+                self.maxFloor = _elevators['_maxFloor']
+                self.closeTime = _elevators['_closeTime']
+                self.openTime = _elevators['_openTime']
+                self.startTime = _elevators['_startTime']
+                self.stopTime = _elevators['_stopTime']
+
+    # this function return the sum of the elev that in the list
 
 
-# reading csv file:
+"""
+this class represent a call for the elevator that 
+return : the time of the call, src and dest floor
+
+"""
+
+
 class Call:
 
     def __init__(self, f_csv, num_call):
@@ -50,7 +59,13 @@ class Call:
                     self.time = row[1]
                     self.sre = row[2]
                     self.dest = row[3]
-
                     break
                 else:
                     cur_line += 1
+
+
+sys.argv = []
+Buildings = list[1]
+calls = list[2]
+output = list[3]
+print(list)
