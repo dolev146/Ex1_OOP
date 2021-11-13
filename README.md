@@ -13,7 +13,7 @@
   else -( iter the list of the calls by compute the start time of the call and the by the dict of the list- insert the call to the shortest )
   by that iter all the calls that in the list
   when finish -insert the assignees of the calls to the csv file.\
-  at the end return the csv file.\
+  at the end return the csv file.
   
 
   
