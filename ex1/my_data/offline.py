@@ -1,3 +1,4 @@
+import csv
 import sys
 import classes
 
@@ -5,54 +6,82 @@ import classes
 def Ex1(Building_json, Calls_csv, output_csv):  # --> input: <Building.json> <Calls.csv> <output.csv>
 
     all_calls = []
-    i = 1  # need to start from the first place
-    for _ in all_calls:
-        a = classes.Call(Calls_csv, i)  # put the csv and the num of the call
+
+    with open(Calls_csv) as f:  # getting the sum of lines in Calls_csv
+        lines = sum(1 for line in f)
+    f.close()
+
+    for row in lines[1:]:  # loop that start from 1
+        a = classes.Call(Calls_csv, row)  # put the csv and the num of the call
         all_calls.append(a)
 
     b = classes.Building(Building_json)
     num_of_elev = elev_in_list(b)  # ->  function that return the sum of the elev in b
 
+    if num_of_elev == 1:  # if there us only one elev in this case
+        insert_ans_to_csv(output_csv)
+
     all_elev = []
-    for num_of_elev in all_elev:  # create a list of lists for each of elevators:
+    for _ in num_of_elev:  # create a list of lists for each of elevators:
         all_elev.append([])
-       #{'done_last_call': 0.0} ??
-    # done_last_call: when the elev finish her duty and ready to the next call, will be at -1 pos (end of the list..)
 
-    for index in all_calls:
-       allocate(all_calls[index], all_elev, output_csv)
+    for index in all_calls:  # loop that send to "allocate" calls by over the list of calls.
+        allocate(all_calls[index], all_elev)
 
 
+# for insert in all_elev:   --> the loop that insert the final allocation to the output
+# insert_ans_to_csv(index, i, output_csv)
 '''
  this function allocate the call to specific elevator
- index: the index of the elev in the call list
- all_calls: all the calls that we need to allocate (contains: src,dest and time stamp)
- all_elev: list of list: each list represent elevator
+    call: the call that we need to allocate (contains: src,dest and time stamp)
+    all_elev: list of lists: each list represent elevator
 '''
 
-def allocate(call, all_elev, output_csv)-> int:
 
-    for i in all_elev:
-        if:
-            insert_ans_to_csv(i, output_csv)
+def allocate(call, all_elev) -> int:
+    # direction = direction_call(call)
+    ans = []
 
-
-
-
-
-
-
-
+    for each_list in all_elev:  # iter the elev list and find the best elev to allocate
+        if each_list.__len__() > 0:
+            last_call = each_list[-1]
 
 
 '''
-this method insert the chosen elev to the csv file that we need to return 
-'''
-def insert_ans_to_csv(choose_elev, output_csv):
+this method insert the chosen elev to the csv file that we need to return  
+index: the index of the call in the csv file
+choose_elev
+output_csv: the csv that we need to return at the end..
+ '''
 
 
+def direction_call(call):
+    if (call.dest - call.src) > 0:
+        return 1  # up
+    else:
+        return -1
 
-#def dest(b):
+
+def insert_ans_to_csv(index, choose_elev, output_csv):
+    with open(output_csv) as file:
+        writer = csv.writer(file, delimiter=',')
+        cur_line = 1
+        for row in writer:
+            if cur_line == index:
+                row[5] = choose_elev
+            break
+        else:
+            cur_line += 1
+        file.close()
+
+
+def insert_zero(output_csv):  # used when we have only one elev
+    with open(output_csv) as file:
+        writer = csv.writer(file, delimiter=',')
+        cur_line = 1
+        for row in writer:
+            row[5] = 0
+        file.close()
 
 
 # iter the list and count how much dict we have
@@ -67,6 +96,4 @@ this function decide..
 # def priority(index, floor):
 
 if __name__ == '__main__':
-    bui = classes.Building(r'ex1/data/Ex1_input/Ex1_Calls/Calls_a.csv')
-
-
+    bui = classes.Building(r'ex1/data/Ex1_input/Ex1_Calls/Calls.csv')

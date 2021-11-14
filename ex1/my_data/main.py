@@ -1,3 +1,5 @@
+import csv
+
 import classes
 
 
@@ -10,12 +12,8 @@ def elev_in_list(test_list):
     return str(res)
 
 
-temp = [[], [1, 2], [1, 4]]
-list1 = [[], [], [], [], [], 'text', 'text2', [], 'moreText']
-
-for x in list1:
-    if !=[]:
+my_list = [[], ['a2', 'b2'], ['a3', 'b3', 'c3'], ['a4', 'b4', 'c4', 'd4', 'e4']]
+for _ in my_list:
+    print(_)
 
 
-
-print([x for x in list1 if x != []])
