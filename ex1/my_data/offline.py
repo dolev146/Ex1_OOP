@@ -19,7 +19,7 @@ def Ex1(Building_json, Calls_csv, output_csv):  # --> input: <Building.json> <Ca
     num_of_elev = elev_in_list(b)  # ->  function that return the sum of the elev in b
 
     if num_of_elev == 1:  # if there us only one elev in this case
-        insert_ans_to_csv(output_csv)
+        insert_zero(output_csv)
 
     all_elev = []
     for _ in num_of_elev:  # create a list of lists for each of elevators:
@@ -38,13 +38,24 @@ def Ex1(Building_json, Calls_csv, output_csv):  # --> input: <Building.json> <Ca
 '''
 
 
-def allocate(call, all_elev) -> int:
+def allocate(call: classes.Call, all_elev) -> int:
     # direction = direction_call(call)
     ans = []
-
+    our_time = call.time
     for each_list in all_elev:  # iter the elev list and find the best elev to allocate
+
+        if each_list.__len__() == 0:
+            all_elev[each_list].append(call)
+
+        # if each_list.__len__() > 0 && each_list[-1].dest - each_list[-1].src  :
+
+        our_el = {}
         if each_list.__len__() > 0:
+            time_for_floor = calc_time(each_list.index(), all_elev[each_list])
             last_call = each_list[-1]
+            other_time = last_call.time
+            fin_time = our_time - other_time
+
 
 
 '''
@@ -53,6 +64,10 @@ index: the index of the call in the csv file
 choose_elev
 output_csv: the csv that we need to return at the end..
  '''
+
+
+def calc_time(index: int):
+    return 1
 
 
 def direction_call(call):
@@ -89,7 +104,21 @@ def elev_in_list(test_list):
     res = len([ele for ele in test_list if isinstance(ele, dict)])
     return str(res)
 
-
+def csvToList(callFile:str):
+    calls = []
+    with open(callFile) as file:
+        csvReader = csv.reader(file)
+        for row in csvReader:
+            elevatorCall = ElevatorCall(
+                strElevatorCall=str(row[0]),
+                timeStamp=float(row[1]),
+                sourceOfCall=int(row[2]),
+                destinationOfCall=int(row[3]),
+                stateOfElevator=int(row[4]),
+                indexOfChosenElevatorToThisCall=int(row[5])
+            )
+            calls.append(elevatorCall)
+        return calls
 '''
 this function decide.. 
 '''
