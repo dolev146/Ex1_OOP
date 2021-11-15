@@ -11,11 +11,12 @@ class Elevator:
         self.openTime = openTime
         self.stopTime = stopTime
         self.startTime = startTime
-        self.floorTime = 1 / speed + closeTime + openTime + startTime + stopTime
-        self.callList = []
+        self.position = 0
 
-        def calcTimeToDest(self, src, dest) -> float:
-            print(self.floorTime)
-            print(src)
-            print(dest)
-            return 1
+        # self.floorTime = 1 / speed + closeTime + openTime + startTime + stopTime    
+        # self.callList = []
+        # def calcTimeToDest(self, src, dest) -> float:
+        #     print(self.floorTime)
+        #     print(src)
+        #     print(dest)
+        #     return 1
