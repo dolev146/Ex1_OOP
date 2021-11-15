@@ -1,6 +1,6 @@
 import sys
 from allocate import allocate
-from convertFiles import jsonBuildingToObj,csvToList,writeOutPutFile
+from convertFiles import jsonBuildingToObj, csvToList, writeOutPutFile
 from allocate import allocate
 
 if __name__ == '__main__':
@@ -10,12 +10,18 @@ if __name__ == '__main__':
     building = jsonBuildingToObj(sys.argv[1])
     # requiring calls from its json file
     callsList = csvToList(sys.argv[2])
+
     # apply algorithm
+    if building.elev_amount == 1:
+        for call in callsList:
+            call.idChosenElev = 0
+
     for call in callsList:
         chosen_elev = allocate(call, building)
-        call.indexOfChosenElevatorToThisCall = chosen_elev
+        call.idChosenElev = chosen_elev
     # writing the output file
     writeOutPutFile(callsList, sys.argv[3])
+
 
 # """
 # :param manufacturer: The manufacturer of the vehicle.

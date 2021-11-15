@@ -27,7 +27,7 @@ def csvToList(callFile: str):
                 sourceOfCall=int(row[2]),
                 destinationOfCall=int(row[3]),
                 stateOfElevator=int(row[4]),
-                indexOfChosenElevatorToThisCall=int(row[5])
+                idChosenElev=int(row[5])
             )
             calls.append(elevatorCall)
         return calls
