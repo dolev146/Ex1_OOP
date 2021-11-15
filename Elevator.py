@@ -13,9 +13,8 @@ class Elevator:
         self.stopTime = stopTime
         self.startTime = startTime
         self.lastFloor = 0
+        self.floorTime = 1 / speed + closeTime + openTime + startTime + stopTime    
 
-
-        # self.floorTime = 1 / speed + closeTime + openTime + startTime + stopTime    
         # self.callList = []
         # def calcTimeToDest(self, src, dest) -> float:
         #     print(self.floorTime)

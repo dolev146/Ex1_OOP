@@ -8,6 +8,8 @@ if __name__ == '__main__':
     # python Ex1.py <Building.json> <Calls.csv> <output.csv> as specified to do.
     # requiring building from its json file
     building = jsonBuildingToObj(sys.argv[1])
+    building_size = building.size
+    fastest_elv = building.fastest_elv
     # requiring calls from its json file
     callsList = csvToList(sys.argv[2])
 
@@ -17,11 +19,10 @@ if __name__ == '__main__':
             call.idChosenElev = 0
 
     for call in callsList:
-        chosen_elev = allocate(call, building)
+        chosen_elev = allocate(call, building, building_size, fastest_elv)
         call.idChosenElev = chosen_elev
     # writing the output file
     writeOutPutFile(callsList, sys.argv[3])
-
 
 # """
 # :param manufacturer: The manufacturer of the vehicle.
