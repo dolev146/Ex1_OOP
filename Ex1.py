@@ -1,7 +1,7 @@
 import sys
 from allocate import allocate
 from convertFiles import jsonBuildingToObj, csvToList, writeOutPutFile
-from allocate import allocate
+from allocate import *
 
 if __name__ == '__main__':
     # requiring all the data needed for the program from the files
@@ -18,9 +18,18 @@ if __name__ == '__main__':
         for call in callsList:
             call.idChosenElev = 0
 
-    for call in callsList:
-        chosen_elev = allocate(call, building, building_size, fastest_elv)
-        call.idChosenElev = chosen_elev
+    random_allocate(callsList, building.elevators)
+
+
+
+
+
+
+    #########################
+
+    # for call in callsList:
+    #     chosen_elev = allocate(call, building, building_size, fastest_elv)
+    #     call.idChosenElev = chosen_elev
     # writing the output file
     writeOutPutFile(callsList, sys.argv[3])
 
