@@ -9,11 +9,11 @@ class ElevatorCall:
         self.indexOfChosenElevatorToThisCall = indexOfChosenElevatorToThisCall
 
     def __str__(self) -> str:
-        return f'''{self.strElevatorCall} : ElevatorCall {self.timeStamp} : timeStamp 
-{self.sourceOfCall} : sourceOfCall  {self.destinationOfCall} : destinationOfCall
-{self.stateOfElevator} : stateOfElevator  {self.indexOfChosenElevatorToThisCall} : indexOfChosenElevatorToThisCall'''
+        return f'''ElevatorCall : {self.strElevatorCall},timeStamp : {self.timeStamp} 
+sourceOfCall : {self.sourceOfCall},destinationOfCall : {self.destinationOfCall}
+stateOfElevator : {self.stateOfElevator},indexOfChosenElevatorToThisCall : {self.indexOfChosenElevatorToThisCall}'''
 
     def __repr__(self) -> str:
-        return f'''{self.strElevatorCall} : ElevatorCall {self.timeStamp} : timeStamp {self.sourceOfCall} : sourceOfCall
-{self.destinationOfCall} : destinationOfCall {self.stateOfElevator} : stateOfElevator 
-{self.indexOfChosenElevatorToThisCall} : indexOfChosenElevatorToThisCall'''
+        return f'''ElevatorCall : {self.strElevatorCall},timeStamp : {self.timeStamp}
+sourceOfCall : {self.sourceOfCall},destinationOfCall : {self.destinationOfCall}
+stateOfElevator : {self.stateOfElevator},indexOfChosenElevatorToThisCall : {self.indexOfChosenElevatorToThisCall}'''

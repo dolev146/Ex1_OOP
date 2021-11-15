@@ -1,5 +1,6 @@
 class Elevator:
-    def __init__(self, id: int, speed: float, minFloor: int, maxFloor: int, closeTime: float,
+    def __init__(self, id: int, speed: float, minFloor: int, maxFloor: int,
+                 closeTime: float,
                  openTime: float,
                  startTime: float,
                  stopTime: float) -> None:
@@ -11,7 +12,8 @@ class Elevator:
         self.openTime = openTime
         self.stopTime = stopTime
         self.startTime = startTime
-        self.position = 0
+        self.lastFloor = 0
+
 
         # self.floorTime = 1 / speed + closeTime + openTime + startTime + stopTime    
         # self.callList = []
