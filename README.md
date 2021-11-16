@@ -31,8 +31,8 @@
   if there is only one elevator - put 0 in all the collum that in the csv file.\
   else -
   we allocate the calls by the fastest elevator per floor,e.i we calculate the data abour all the elevators that we have and Assigned by the weights of them.
-  So an elevator that is faster than the other elevators will handle the more calls and bring us a low average waiting time.
-  by that iter all the calls that in the list
+  So an elevator that is faster than the other elevators will handle the more calls and bring us a low average waiting time.\
+  by that iter all the calls that in the list and allocate the calls by te above description.
   when finish -insert the assignees of the calls to the csv file.\
   at the end return the csv file.
   
