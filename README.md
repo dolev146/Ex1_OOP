@@ -1,6 +1,6 @@
 # Ex1_OOP
- ## This project deals with the design of a smart elevator, which receives all the required input in advance, and should incorporate elevators for call in the most optimal way,
- ## so that the average waiting time will be minimal
+ ## This project deals with the design of a smart elevator, which receives all the required input in advance, and should incorporate elevators for call in the most optimal way,\
+  so that the average waiting time will be minimal
 
   ## bibliography:
   - [studylib] - On-line Algorithms versus Off-line Algorithms for the Elevator Scheduling Problem
