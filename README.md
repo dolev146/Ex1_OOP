@@ -1,7 +1,9 @@
 # Ex1_OOP
-  bibliography:
-  https://studylib.net/doc/7878746/on-line-algorithms-versus-off-line-algorithms-for-the-ele...
-  https://thinksoftware.medium.com/elevator-system-design-a-tricky-technical-interview-question-116f396f2b1c
+
+  ## bibliography:
+  - [studylib] - On-line Algorithms versus Off-line Algorithms for the Elevator Scheduling Problem
+  - [thinksoftware] - Elevator System Design 
+
   
 # algo description:
   check how much elevator is in the json file.\
@@ -17,3 +19,6 @@
   
 
   
+[//]:
+[studylib]: https://studylib.net/doc/7878746/on-line-algorithms-versus-off-line-algorithms-for-the-ele...
+[thinksoftware]:  https://thinksoftware.medium.com/elevator-system-design-a-tricky-technical-interview-question-116f396f2b1c
