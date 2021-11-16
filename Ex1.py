@@ -14,4 +14,4 @@ if __name__ == '__main__':
     building = jsonBuildingToObj(sys.argv[1])
     callsList = csvToList(sys.argv[2])
     allocate(callsList, building.elevators)
-    writeOutPutFile(callsList, sys.argv[3])   # writing the output file
+    writeOutPutFile(callsList, sys.argv[3]) 
