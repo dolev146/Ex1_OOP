@@ -9,8 +9,8 @@
 
 # python files:
 - Building: contain info about minFloor & maxFloor, and a list of elevators.
-- Elevator: info about the parameters of the building. contain- speed, minFloor, close & open Time, start & stop Time, status: up/down or level.
-- ElevatorCall: info about each call that will help us to assign the call. contain: index of the Chosen Elev,timeStamp of the call,source & destination of the Call and the direction of the call- up/down.
+- Elevator: info about the parameters of the building. contain- speed, minFloor, close & open Time, start & stop Time, status: up/down or level./
+- ElevatorCall: info about each call that will help us to assign the call. contain: index of the Chosen Elev,timeStamp of the call,source & destination of the Call and the     direction of the call- up/down.
 -convertFiles: contain 3 functions:
 jsonBuildingToObj: convert json file that contain the data about the elevator and the building to objects of building & elevator.
 csvToList: convert csv file that contain the info about the calls that we get and make list of calls from the data.
