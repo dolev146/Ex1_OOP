@@ -1,4 +1,5 @@
-# Ex1_OOP
+# Ex1_OOP - offline algorithem
+## This is the second task in OOP course (Object Oriented Programming & Design. - Ariel University)
   This project deals with a design of a smart elevator, which receives all the required input in advance, and should incorporate elevators for call in the most optimal way,       so that the average waiting time will be minimal.
   the input that we get is:
 - json file that contain data about the building and the Features of elevator.
