@@ -1,5 +1,5 @@
 # Ex1_OOP
- ## This project deals with the design of a smart elevator, which receives all the required input in advance, and should incorporate elevators for call in the most optimal way, so that the average waiting time will be minimal. :elevator:
+ ## This project deals with the design of a smart elevator, which receives all the required input in advance, and should incorporate elevators for call in the most optimal way, so that the average waiting time will be minimal. 
  
 
   ## bibliography:
@@ -7,7 +7,15 @@
   - [studylib] - On-line Algorithms versus Off-line Algorithms for the Elevator Scheduling Problem
   - [thinksoftware] - Elevator System Design 
 
-  
+# classes:
+- Building: contain info about minFloor & maxFloor, and a list of elevators.
+- Elevator: info about the parameters of the building. contain- speed, minFloor, close & open Time, start & stop Time, status: up/down or level.
+- ElevatorCall: info about each call that will help us to assign the call.\ contain: index of the Chosen Elev,timeStamp of the call,source & destination of the Call and the direction of the call- up/down 
+
+- 
+
+
+
 # algo description:
   check how much elevator is in the json file.\
   make number of list that represent the number of the elevators that in the json file.\
