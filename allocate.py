@@ -1,5 +1,6 @@
 import random
 
+
 def allocate(callList, elevatorList):
     """
     we searched all over the internet for a way to make probabilty choicse
@@ -17,10 +18,10 @@ def allocate(callList, elevatorList):
     speed_list = []
     for i in elevatorList:
         speed_list.append(i.speed)
-        result = random.choices(
-            population=elevatorList,
-            weights=speed_list,
-            k=len(callList)
-        )
+    result = random.choices(
+        population=elevatorList,
+        weights=speed_list,
+        k=len(callList)
+    )
     for index, call in enumerate(callList):
         call.idChosenElev = result[index].id

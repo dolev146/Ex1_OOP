@@ -2,6 +2,8 @@ import json
 import csv
 from Building import Building
 from ElevatorCall import ElevatorCall
+from pathlib import Path
+data_folder = Path("./Outputs")
 
 
 def jsonBuildingToObj(jsonBuilding: str):
@@ -60,9 +62,10 @@ def writeOutPutFile(csvList: list, outPutName: str):
     :param outPutName:
     :return: void
     """
+    file_to_open = data_folder / outPutName
     newCallList = []
     for call in csvList:
         newCallList.append(call.__dict__.values())
-    with open(outPutName, 'w', newline="") as outPutFile:
+    with open(file_to_open, 'w', newline="") as outPutFile:
         csvWriter = csv.writer(outPutFile)
         csvWriter.writerows(newCallList)
