@@ -3,9 +3,10 @@ import random
 
 def allocate(callList, elevatorList):
     """
-    we searched all over the internet for a way to make probabilty choicse
+    we searched all over the internet for a way to make preference choices
     https://pynative.com/python-weighted-random-choices-with-probability/
     we found this link, and took the idea to work
+    speed list:  contain all the data about the average of the elevators
     random.choices (
     population: list (of elevators) ,
     weights = list that stores the ratio between every element in the list,
@@ -13,7 +14,7 @@ def allocate(callList, elevatorList):
     return type is list containing elevators objects
     :param callList:
     :param elevatorList:
-    :return:
+    :return void:
     """
     speed_list = []
     for i in elevatorList:
