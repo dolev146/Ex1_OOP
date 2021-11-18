@@ -2,6 +2,11 @@
 # Ex1 OOP Ariel University Elevators System Design With Python
 ## by [Dvir Borochov](https://github.com/dvirbo) and [Dolev Dublon](https://github.com/dolev146)
 
+
+| ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)     |  ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)|  ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) |
+| :---        |    :----:   |          ---: |
+
+
 **Files**
 
 - Ex1.py
@@ -10,7 +15,6 @@
 - ElevatorCall.py
 - allocate.py
 - convertFiles.py
-- .gitignore
 - B1.json - B4.json
 - Call_a.csv - Calls_d.csv
 
@@ -66,19 +70,13 @@ And there is no limit to the amount of people per elevator.
 We used the links below to understand the problem in depth and formulate an algorithm that will lead to optimal performance.
  - [studylib](https://studylib.net/doc/7878746/on-line-algorithms-versus-off-line-algorithms-for-the-ele...)
  - [thinksoftware](https://thinksoftware.medium.com/elevator-system-design-a-tricky-technical-interview-question-116f396f2b1c)
- - [UML chart](https://lucid.app/lucidchart/445effd6-f902-4f9e-96e1-666f7d6a955b/edit?view_items=nGpmtm1QpyO3&invitationId=inv_f7e0b4b2-6c3e-4bd0-ab49-4eb8e0be02b5)
 
 
-## UML && Google Collab
+
+## UML 
 the uml from out first assignment helped understanding how to build our code.
-![Uml](https://user-images.githubusercontent.com/62290677/142245926-8ac89962-1e82-462f-84ef-4c57f816919d.png)
+![UML](https://user-images.githubusercontent.com/62290677/142478335-138fa53b-ea16-418f-b1d8-1177a92a08a3.png)926-8ac89962-1e82-462f-84ef-4c57f816919d.png)
 
-
-| ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)     |  ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)|  ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white) |
-| :---        |    :----:   |          ---: |
-
-
- 
 
 ## Run Locally
 
@@ -99,6 +97,12 @@ Run
 ```bash
   python Ex1.py B1.json Calls_a.csv output.csv
 ```
+or on linux / mac
+
+```bash
+python3 Ex1.py B1.json Calls_a.csv output.csv
+```
+
 
 
 
@@ -112,7 +116,7 @@ Run
 
 
 ## Screenshots
-this is how we tried to understand the method of random un python
+this is how we tried to understand how to choose with prefered answer in python by using 
 [Google Collab](https://colab.research.google.com/drive/1dkSnW-NIoo4lqPexWkW0YivdMyRu777n?usp=sharing)
 ![image](https://user-images.githubusercontent.com/73783656/142256429-9cf944d9-35ff-4a83-adb4-d0c1b01cf454.png)
 
@@ -128,6 +132,7 @@ finally, we decided to use an algorithm that favors speed.
  ![image](https://user-images.githubusercontent.com/62290677/142257788-c5ca8601-89b5-4b1f-a635-8f1962c97417.png)
  this table shows the different between the two methods that we examine
 
+[link to the java simulator repo](https://github.com/dolev146/JavaSimulatorPythonElevatorOOP)
 
 
 ## Unit test
@@ -136,3 +141,170 @@ finally, we decided to use an algorithm that favors speed.
 
 
 
+# Files
+
+### Ex1.py
+
+``` import sys
+from convertFiles import jsonBuildingToObj, csvToList, writeOutPutFile
+from allocate import allocate
+
+
+if __name__ == '__main__':
+    # """
+    # requiring all the data needed for the program from the files
+    # python Ex1.py <Building.json> <Calls.csv> <output.csv> as specified to do.
+    # requiring building from its json file callList from csv and the output name
+    # and converting to something we can work with in python.
+    # """
+
+    building = jsonBuildingToObj(sys.argv[1])
+    callsList = csvToList(sys.argv[2])
+    allocate(callsList, building.elevators)
+    writeOutPutFile(callsList, sys.argv[3])
+```
+
+## Elevator.py
+
+```
+class Elevator:
+    def __init__(self, id: int,
+                 speed: float,
+                 minFloor: int,
+                 maxFloor: int,
+                 closeTime: float,
+                 openTime: float,
+                 startTime: float,
+                 stopTime: float) -> None:
+        self.id = id
+        self.speed = speed
+        self.minFloor = minFloor
+        self.maxFloor = maxFloor
+        self.closeTime = closeTime
+        self.openTime = openTime
+        self.stopTime = stopTime
+        self.startTime = startTime
+
+```
+
+## ElevatorCall.py
+
+```
+class ElevatorCall:
+    def __init__(self,
+                 strElevatorCall: str,
+                 timeStamp: float,
+                 sourceOfCall: int,
+                 destinationOfCall: int,
+                 stateOfElevator: int,
+                 idChosenElev: int) -> None:
+        self.strElevatorCall = strElevatorCall
+        self.timeStamp = timeStamp
+        self.sourceOfCall = sourceOfCall
+        self.destinationOfCall = destinationOfCall
+        self.stateOfElevator = stateOfElevator
+        self.idChosenElev = idChosenElev
+
+```
+
+## convertFiles.py
+
+```
+import json
+import csv
+from Building import Building
+from ElevatorCall import ElevatorCall
+# from pathlib import Path
+# data_folder = Path("./Outputs")
+
+
+def jsonBuildingToObj(jsonBuilding: str):
+    """
+    Traversy Media pyhton crash course
+    https://youtu.be/JJmcL1N2KQs startig from 1:26:17 he starts talking about working with files
+    :param callFile:
+    :return: calls tyoe : list
+    """
+    try:
+        file = open(jsonBuilding, "r+")
+        buildingDict = json.load(file)
+        file.close()
+        return Building(buildingDict['_minFloor'], buildingDict['_maxFloor'], buildingDict['_elevators'])
+        # for some reason spread operator not working: return Building(**buildingDict)
+
+    except IOError as e:
+        print(e)
+
+
+def csvToList(callFile: str):
+    """
+    acording to amichai in his youTube video
+    https://www.youtube.com/watch?v=AgzaJpptbHE&ab_channel=CoreySchafer
+    we also watched Traversy Media pyhton crash course
+    https://youtu.be/JJmcL1N2KQs startig from 1:26:17 he starts talking about working with files
+    :param callFile:
+    :return: calls tyoe : list
+    """
+    try:
+        calls = []
+        with open(callFile) as file:
+            csvReader = csv.reader(file)
+            for row in csvReader:
+                elevatorCall = ElevatorCall(
+                    strElevatorCall=str(row[0]),
+                    timeStamp=float(row[1]),
+                    sourceOfCall=int(row[2]),
+                    destinationOfCall=int(row[3]),
+                    stateOfElevator=int(row[4]),
+                    idChosenElev=int(row[5])
+                )
+                calls.append(elevatorCall)
+            return calls
+    except IOError as e:
+        print(e)
+
+
+def writeOutPutFile(csvList: list, outPutName: str):
+    """
+    acording to amichai in his youTube video
+    https://www.youtube.com/watch?v=AgzaJpptbHE&ab_channel=CoreySchafer starting from minute 18:40
+    there is a spesific way to write, we need to use the __dict__ method in order to be able to
+    write the calls back to the csv file, so we worked according to the instructions.
+    :param csvList:
+    :param outPutName:
+    :return: void
+    """
+    # file_to_open = data_folder / outPutName
+    newCallList = []
+    for call in csvList:
+        newCallList.append(call.__dict__.values())
+    with open(outPutName, 'w', newline="") as outPutFile:
+        csvWriter = csv.writer(outPutFile)
+        csvWriter.writerows(newCallList)
+
+```
+### Building.py 
+
+```
+from Elevator import Elevator
+
+
+class Building:
+    def __init__(self, minFloor: int, maxFloor: int, elevators: list) -> None:
+        self.minFloor = minFloor
+        self.maxFloor = maxFloor
+        self.elevators = []
+        for elevator in elevators:
+            elv = Elevator(elevator['_id'],
+                           elevator['_speed'],
+                           elevator['_minFloor'],
+                           elevator['_maxFloor'],
+                           elevator['_closeTime'],
+                           elevator['_openTime'],
+                           elevator['_startTime'],
+                           elevator['_stopTime']
+                           )
+            self.elevators.append(elv)
+
+
+```
